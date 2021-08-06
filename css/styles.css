@@ -10,6 +10,7 @@
   --button-bcg-color: #f5f4fa;
   --team-bcg-color: #f5f4fa;
   --start-color: rgba(47, 48, 58, 0.4);
+  --work-background: rgba(47, 48, 58, 0.8);
 }
 
 body {
@@ -22,9 +23,12 @@ body {
   line-height: 1.14;
 }
 
-h1,
+*/ h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 p {
   margin: 0;
 }
@@ -86,6 +90,7 @@ ul {
 .site-nav-item {
   display: flex;
   margin-right: 50px;
+  position: relative;
 }
 
 .site-nav-item:last-child {
@@ -99,11 +104,34 @@ ul {
   color: var(--main-txt-color);
   font-weight: 500;
   letter-spacing: 0.02em;
+  transition: text-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-nav-link::after {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  content: "";
+  display: inline-block;
+
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav-link:hover,
 .site-nav-link:focus {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   color: var(--accent-color);
+}
+
+.site-nav-link:hover::after,
+.site-nav-link:focus::after {
+  opacity: 1;
 }
 
 .current {
@@ -142,11 +170,15 @@ ul {
   font-style: normal;
   font-weight: 500;
   letter-spacing: 0.02em;
+
+  transition: text-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link:hover,
 .link:focus {
   color: var(--accent-color);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 /* Main */
@@ -220,6 +252,7 @@ ul {
 .work-list {
   display: flex;
   margin-top: 50px;
+  position: relative;
 }
 
 .work-list-title {
@@ -242,6 +275,28 @@ img {
   width: 100%;
   height: auto;
 }
+
+.work-text {
+  display: inline-block;
+  position: absolute;
+  bottom: -5px;
+  text-align: center;
+  margin: 0;
+
+  width: 370px;
+  height: 70px;
+
+  padding-top: 27px;
+  padding-left: auto;
+  padding-right: auto;
+  padding-bottom: 27px;
+
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--work-background);
+  color: var(--primary-white-color);
+}
+
 /* Team */
 .team {
   background-color: var(--team-bcg-color);
@@ -335,7 +390,15 @@ img {
   font-style: normal;
   font-weight: 500;
   letter-spacing: 0.02em;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.contacts-foot .link:hover,
+.contacts-foot .link:focus {
+  color: var(--accent-color);
+}
+
 /* buttons */
 
 .button,
@@ -352,10 +415,15 @@ img {
   font-size: 16px;
   line-height: 1.62;
   font-weight: 500;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-button {
   min-width: 73px;
   padding: 6px 22px 6px 22px;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
@@ -450,6 +518,10 @@ img {
 
 .examples-link {
   display: block;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .examples-link:hover,
@@ -459,12 +531,6 @@ img {
 }
 
 /* Card */
-
-.card-content {
-  border-right: 1px solid #eeeeee;
-  border-bottom: 1px solid #eeeeee;
-  border-left: 1px solid #eeeeee;
-}
 
 .example-description {
   margin-top: 10px;
@@ -512,12 +578,14 @@ img {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-icon {
   justify-content: center;
   fill: #afb1b8;
   margin: 12px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-links:hover,
@@ -565,16 +633,17 @@ img {
 
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-icon {
   fill: #afb1b8;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-link:hover,
 .client-link:focus {
   border: 1px solid var(--accent-color);
-  fill: var(--accent-color);
 }
 
 .client-link:hover .client-icon,
@@ -612,11 +681,12 @@ img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-link:hover,
 .footer-link:focus {
-  background: var(--accent-color);
+  background-color: var(--accent-color);
 }
 
 .footer-icon {
